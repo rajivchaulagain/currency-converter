@@ -1,29 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form } from "react-bootstrap";
 import { RxLoop } from "react-icons/rx";
 
+import { useCurrencyConverter } from "../../hooks/useCurrencyConveter";
+
 const ConverterForm: React.FC = () => {
-  const [nepValue, setNepValue] = useState<number>(1);
-  const [busdValue, setBusdValue] = useState<number>(3);
-
-  let exchangeRate: number = 3;
-
-  const handleNepCurrency = (value: number) => {
-    // let fixedValue = parseFloat(Number(value).toFixed(2))
-    setNepValue(value);
-    setBusdValue(value * exchangeRate);
-  };
-
-  const handleUsdCurrency = (value: number) => {
-    // let fixedValue = parseFloat(Number(value).toFixed(2))
-    setBusdValue(value);
-    setNepValue(value / exchangeRate);
-  };
-
-  const flipConverter = () => {
-    setBusdValue(nepValue);
-    setNepValue(nepValue / exchangeRate)
-  };
+    const {nepValue , busdValue , handleNepCurrency , handleUsdCurrency , flipConverter} = useCurrencyConverter();
 
   return (
     <div className="form-field">
